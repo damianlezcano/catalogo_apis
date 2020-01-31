@@ -1,0 +1,64 @@
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
+                          https://maven.apache.org/xsd/settings-1.0.0.xsd">
+
+    <proxies>
+        <proxy>
+            <id>nssa-proxy</id>
+            <active>true</active>
+            <protocol>http</protocol>
+            <host>172.21.11.13</host>
+            <port>12080</port>
+            <nonProxyHosts>*.cluster.local|*.grupobna.local|*.sube.com.ar|*.svc|1blvocp-master01.grupobna.local</nonProxyHosts>
+        </proxy>
+    </proxies>
+
+    <mirrors>
+        <mirror>
+            <id>Nexus</id>
+            <name>Nexus Public Mirror</name>
+            <url>http://nexus3-cicd.npapps.grupobna.local/repository/maven-all-public</url>
+            <mirrorOf>*</mirrorOf>
+        </mirror>
+    </mirrors>
+
+    <servers>
+        <server>
+            <id>nssa-nexus</id>
+            <username>admin</username>
+            <password>admin123</password>
+        </server>
+        <server>
+            <id>nssa-snapshots-nexus</id>
+            <username>admin</username>
+            <password>admin123</password>
+        </server>
+    </servers>
+
+    <repositories>
+        <repository>
+            <id>nssa-nexus-mirror</id>
+            <url>http://nexus3-cicd.npapps.grupobna.local/repository/maven-all-public</url>
+        </repository>
+    </repositories>
+
+    <profiles>
+        <profile>
+            <id>allow-snapshots</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <repositories>
+                <repository>
+                    <id>snapshots-repo</id>
+                    <url>http://nexus3-cicd.npapps.grupobna.local/repository/snapshots</url>
+                    <releases>
+                        <enabled>false</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                </repository>
+            </repositories>
+        </profile>
+    </profiles>
+</settings>

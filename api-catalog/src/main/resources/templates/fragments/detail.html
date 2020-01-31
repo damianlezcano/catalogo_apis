@@ -1,0 +1,12 @@
+<div th:fragment="spec(name,nodeRoot)">
+
+  <a href="#" th:text="${name}"/>
+
+  <div th:id="${name}">
+	  <div th:each="node: ${nodeRoot.get()}">
+	  	<span th:text="${node.getName()}"></span>
+		<div th:text="${@dataFormatBean.print(node)}">...</div>
+	  </div>
+  </div>
+
+</div>

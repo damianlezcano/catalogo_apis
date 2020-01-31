@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style type="text/css">
+		table {
+		    width: 100%;
+		    border-style: double;
+		    background-color: bisque;
+		}
+
+		.rest {
+		    font-size: small;
+		    color: white;
+		    background: green;
+		}
+		
+		.soap {
+		    font-size: small;
+		    color: white;
+		    background: cornflowerblue;
+		}
+
+		.url {
+		    font-size: x-large;
+		}
+
+				
+		.solid-header {
+		  padding: 10px 16px;
+		  background: #555;
+		  color: #f1f1f1;
+		}
+		
+		.content {
+		  padding: 16px;
+		}
+
+		th, td {
+		  text-align: left;
+		  padding: 1px;
+		}
+		
+/* filas distinto color */		
+/*
+tr:nth-child(even) {background-color: white;}
+*/
+
+/* metodos (get,post,put,delete) conformato */		
+/*
+.btn {
+  cursor: pointer;
+  margin: 10px;
+  border-radius: 5px;
+  text-decoration: none;
+  padding: 10px;
+  font-size: 22px;
+  transition: .3s;
+  -webkit-transition: .3s;
+  -moz-transition: .3s;
+  -o-transition: .3s;
+  display: inline-block;
+}
+
+
+.blue {
+  color: #55acee;
+  border: 2px #55acee solid;
+}
+*/
+
+	</style>
+</head>
+<body>
+
+	<div class="solid-header">
+	  <h3>Catálogo de API's</h3>
+	</div>
+	
+	<div th:each="ns: ${nodeRoot.get()}" class="content">
+	
+		<span>
+			<a class="url" th:href="${ns.getUri()}" th:text="${ns.getUri()}" target="_blank"/>
+			<div th:text="${ns.getDescription()}"></div>
+			<span th:class="${ns.getType()}" th:text="${'['+ns.getType().toUpperCase()+']'}"></span>
+		</span>
+		
+		<table>
+			<span th:each="nm: ${ns.getAllNodeMethod()}">
+			  <tr>
+				<td style="width:70px"><span th:text="${nm.getName().toUpperCase()}"></span></td>
+			    <td><span th:text="${nm.getPath()}"></span></td>
+			  </tr>
+			</span>
+		</table>
+				
+	</div>
+
+</body>
+</html>
