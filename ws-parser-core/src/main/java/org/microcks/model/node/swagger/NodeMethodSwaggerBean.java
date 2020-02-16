@@ -23,7 +23,7 @@ public class NodeMethodSwaggerBean extends NodeMethod {
 		this.description = base.get("summary").str();
 		this.description+= " " + base.get("description").str();
 		//--------------------------------------------------------
-		if(description.isEmpty()) {description=null;}
+		if(description.trim().isEmpty()) {description=null;}
 		Map mapResponse = base.get("responses").map();
 		for (Object code : mapResponse.keySet()) {
 			responses.put(code.toString(), buildResponse((Map) mapResponse.get(code)));

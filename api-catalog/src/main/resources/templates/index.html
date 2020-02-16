@@ -190,7 +190,7 @@ body {
 					<td style="width:70px"><span th:text="${nm.getName().toUpperCase()}"></span></td>
 				    <td>
 						<span th:text="${nm.getParent().getPath()}"></span>
-						<span class="descripcion-metodo" th:text="' ('+${nm.getDescription()}+')'"></span>
+						<span th:if="${nm.getDescription() != null}" class="descripcion-metodo" th:text="' ('+${nm.getDescription()}+')'"></span>
 					</td>
 				  </tr>
 				</span>
