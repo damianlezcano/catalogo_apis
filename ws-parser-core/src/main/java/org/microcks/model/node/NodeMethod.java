@@ -1,16 +1,12 @@
 package org.microcks.model.node;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
-
-import org.microcks.model.NodeMap;
-import org.microcks.model.node.Node;
 
 public abstract class NodeMethod extends Node {
 
+	protected String description;
+	
 	public boolean havePathParam() {
 		return false;
 	}
@@ -37,6 +33,14 @@ public abstract class NodeMethod extends Node {
 
 	public NodeVersion getNodeVersion() {
 		return null;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	
 }

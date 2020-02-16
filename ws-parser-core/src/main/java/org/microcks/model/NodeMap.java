@@ -42,13 +42,19 @@ public class NodeMap {
 	}
 	
 	public List list() {
-		if(r instanceof List) {
-			return (List) r;			
-		}else{
-			List lr = new ArrayList();
-			lr.add(r);
-			return lr;
+		List l = new ArrayList();
+		if(r != null) {
+			if(r instanceof List) {
+				l = (List) r;
+			}else if(r instanceof Map) {
+				for(Object t : ((Map)r).entrySet()) {
+					l.add(t);
+				}
+			}else{
+				l.add(r);
+			}
 		}
+		return l;
 	}
 	
 	public Object r() {

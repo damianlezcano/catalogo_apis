@@ -14,6 +14,11 @@ public class NodeMethodWsdlBean extends NodeMethod {
 	private Map<String,Object> requestBody = new HashMap<String,Object>();
 	private Map<String,Object> responses = new HashMap<String,Object>();
 	private List parameters = new ArrayList();
+
+	public NodeMethodWsdlBean(NodePathWsdlBean parent) {
+		this.parent = parent;
+		this.name = "post";
+	}
 	
 	public NodeMethodWsdlBean(NodePathWsdlBean parent, NodeMap nodeMap) {
 		this.parent = parent;

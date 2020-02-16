@@ -11,13 +11,15 @@ public class NodePathWsdlBean extends NodePath {
 
 	private List parameters;
 	
-	public NodePathWsdlBean(Node parent, String key) {
+	public NodePathWsdlBean(Node parent, String name) {
 		this.parent = parent;
-		this.name = key;
+		this.name = name;
+		add(new NodeMethodWsdlBean(this));
 	}
 
 	public NodePathWsdlBean(Node parent, String name, Map map) {
-		this(parent,name);
+		this.parent = parent;
+		this.name = name;
 		add(new NodeMethodWsdlBean(this,new NodeMap(map)));
 	}
 

@@ -28,11 +28,11 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 //@org.springframework.stereotype.Service
 public class NodeRoot extends Node {
 
-	public void load(String content) throws JsonParseException, JsonMappingException, IOException {
-		load("", content);
+	public NodeService load(String content) throws JsonParseException, JsonMappingException, IOException {
+		return load("", content);
 	}
 	
-	public void load(String uri, String content) throws JsonParseException, JsonMappingException, IOException {
+	public NodeService load(String uri, String content) throws JsonParseException, JsonMappingException, IOException {
 		this.name = "/";
 
 		String contentType = getContentType(content);
@@ -54,6 +54,7 @@ public class NodeRoot extends Node {
 		}else {
 			add(nodeService);
 		}
+		return nodeService;
 	}
 	
     private NodeService getNodeService(String contentType, NodeRoot nodeRoot, NodeMap nMap, String uri, String content) {

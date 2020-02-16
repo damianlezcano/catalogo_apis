@@ -19,12 +19,17 @@ public class NodeMethodSwaggerBean extends NodeMethod {
 	public NodeMethodSwaggerBean(Node parent, Entry entry) {
 		this.parent = parent;
 		this.name = (String) entry.getKey();
-		Map mapResponse = new NodeMap((Map)entry.getValue()).get("responses").map();
+		NodeMap base = new NodeMap((Map)entry.getValue());
+		this.description = base.get("summary").str();
+		this.description+= " " + base.get("description").str();
+		//--------------------------------------------------------
+		if(description.isEmpty()) {description=null;}
+		Map mapResponse = base.get("responses").map();
 		for (Object code : mapResponse.keySet()) {
 			responses.put(code.toString(), buildResponse((Map) mapResponse.get(code)));
 		}
-		requestBody = buildRequestBody(new NodeMap((Map)entry.getValue()).get("requestBody").map());
-		parameters = buildParameters(new NodeMap((Map)entry.getValue()).get("parameters"));
+		requestBody = buildRequestBody(base.get("requestBody").map());
+		parameters = buildParameters(base.get("parameters"));
 	}
 	
 	private List buildParameters(NodeMap nodeMap) {
