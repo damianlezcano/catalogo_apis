@@ -1,12 +1,12 @@
 package ar.com.nssa.monitoreo.domain;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
 import org.microcks.model.NodeMap;
 import org.microcks.model.node.NodeMethod;
-import org.microcks.model.node.NodePath;
 import org.microcks.model.node.NodeService;
 
 public class Endpoint {
@@ -22,6 +22,11 @@ public class Endpoint {
 	private Date date;
 	private Auth auth;
 	private NodeMap prop;
+	
+	@Override
+	public String toString() {
+		return String.format("%s", uri);
+	}
 	
 	public String getUri() {
 		return uri;
@@ -138,4 +143,5 @@ public class Endpoint {
 	public void setProp(NodeMap prop) {
 		this.prop = prop;
 	}
+
 }

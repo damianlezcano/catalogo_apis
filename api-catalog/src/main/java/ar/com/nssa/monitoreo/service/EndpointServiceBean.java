@@ -1,8 +1,10 @@
 package ar.com.nssa.monitoreo.service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+import org.microcks.model.node.NodeMethod;
 import org.microcks.model.node.NodeRoot;
 import org.microcks.model.node.NodeService;
 import org.slf4j.Logger;
@@ -90,6 +92,26 @@ public class EndpointServiceBean {
 		for(Endpoint e : dao.list()) {
 			if(e.getVisible() == null || e.getVisible() == true) {
 				l.add(e);
+			}
+		}
+		return l;
+	}
+
+	public List<Endpoint> list(String f) {
+		List<Endpoint> l = new ArrayList<Endpoint>();
+		if( f == null ) {
+			l = list();
+		}else{
+			for(Endpoint e : list()) {
+				String s = e.getUri() + e.getDescription() + e.getOpenshift() + e.getType() + Arrays.toString(e.getLabels()) + e.getProp();
+				
+				for(NodeMethod nm : e.getAllNodeMethod()) {
+					s += nm.getPath();
+				}
+				
+				if(s.toLowerCase().contains(f.toLowerCase())) {
+					l.add(e);
+				}
 			}
 		}
 		return l;

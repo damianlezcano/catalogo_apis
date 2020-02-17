@@ -1,0 +1,74 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "Servicio de conversión de coordenadas",
+        "version": "1.0.0",
+        "description": "Servicio de conversión de coordenadas de Posgar 2007 a LatLon 84 y viceversa."
+    },
+    "paths": {
+        "/posgar": {
+            "summary": "Convierte coordenadas expresadas en Posgar a LL84",
+            "description": "Convierte coordenadas expresadas en Posgar a LL84",
+            "get": {
+                "parameters": [
+                    {
+                        "name": "x",
+                        "description": "Coordenada X",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "name": "y",
+                        "description": "Coordenada Y",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Convierte coordenadas expresadas en LL84"
+                    }
+                },
+                "summary": "Convierte coordenadas expresadas en Posgar a LL84"
+            }
+        },
+        "/ll84": {
+            "summary": "Convierte de LL84 a Posgar",
+            "description": "Convierte coordenadas expresadas en LL84 a Posgar",
+            "get": {
+                "parameters": [
+                    {
+                        "name": "x",
+                        "description": "Coordenada X",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "name": "y",
+                        "description": "Coordenada Y",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Convierte coordenadas expresadas en Posgar"
+                    }
+                },
+                "summary": "Convierte coordenadas expresadas en LL84 a Posgar"
+            }
+        }
+    }
+}
